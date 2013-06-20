@@ -1,0 +1,11 @@
+{
+    "name": "chat"
+  , "private": true
+  , "dependencies": {
+     
+     "socket.io-client": ""
+    , "now": "",
+       "node-proxy": ""  
+           
+  }
+}

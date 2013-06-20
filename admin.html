@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>nowjs test</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="/nowjs/now.js"></script>
+<script>
+
+$(document).ready(function(){
+  var buyer_id = "";
+  now.receiveMessage = function(name, message){
+    $("#messages").append("<br>" + name + ": " + message);
+  }
+
+  now.deletechat = function(){
+    $("#chat").css("display","none");
+  }
+ 
+  now.addchat = function(){
+     $("#chat").css("display","block");
+  }
+
+  now.add_buyer = function(name,buyer_id){
+    $("#buyers").append("<br><div id='"+buyer_id+"'><input type='button' value='"+name+"' onclick='now.set_buyer(\""+buyer_id+"\");' /></div>");
+  }
+
+now.remove_buyer = function(buyer_id){
+    selector = 'div#'+buyer_id;
+    $(selector).remove();
+  }
+
+ now.set_buyer = function(buyerid){
+      buyer_id = buyerid;
+ }
+
+ $("#send-button").click(function(){
+    now.distributeMessage($("#text-input").val(),1,buyer_id);
+    $("#text-input").val("");
+  });
+  now.name = "Admin";
+});
+
+</script>
+</head>
+
+<body>
+
+<br>
+<div id="messages"><br>Welcome Admin</div>
+<div id = "chat">
+<input type="text" id="text-input">
+<input type="button" value="Send" id="send-button">
+</div>
+<div id="buyers"></div>
+</body>
+</html>
